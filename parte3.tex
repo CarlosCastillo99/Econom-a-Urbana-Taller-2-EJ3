@@ -1,0 +1,632 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{moresize}
+\usepackage{booktabs}
+\usepackage[para,online,flushleft]{threeparttable}
+
+
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Plan de Análisis Pre-Especificado (PAP) para un estudio de correspondencia sobre discriminación en el mercado de alquiler en Suecia\\}
+
+\author{%
+\IEEEauthorblockN{Luis Alejandro Rubiano Guerrero}
+\IEEEauthorblockA{202013482\\
+\href{mailto:la.rubiano@uniandes.edu.co}{\texttt{la.rubiano@uniandes.edu.co}}}
+\and
+\IEEEauthorblockN{Andres Felipe Rosas Castillo}
+\IEEEauthorblockA{202013471\\
+\href{mailto:a.rosasc@uniandes.edu.co}{\texttt{a.rosasc@uniandes.edu.co}}}
+\and
+\IEEEauthorblockN{Carlos Andrés Castillo Cabrera}
+\IEEEauthorblockA{202116837\\
+\href{mailto:ca.castilloc1@uniandes.edu.co}{\texttt{ca.castilloc1@uniandes.edu.co}}}
+}
+
+
+
+\maketitle
+
+\section{Introducción y motivación}
+
+\subsection{Contexto}
+
+El estudio de la discriminación en el mercado de alquiler de vivienda tiene una larga tradición en economía urbana y economía laboral. Los primeros trabajos empíricos, desarrollados desde mediados del siglo XX, utilizaron experimentos de auditoría con agentes encubiertos: dos personas entrenadas visitaban el mismo anuncio o buscaban el mismo servicio, idénticas en todas las características observables excepto por el atributo que se quería estudiar (típicamente el origen étnico o racial). Este enfoque permitía observar conductas discriminatorias en situaciones reales, pero presentaba limitaciones importantes: aunque los auditores recibían la misma formación, resultaba difícil garantizar que todas las características no observables (lenguaje corporal, tono de voz, expresiones faciales, etc.) fueran realmente idénticas entre ellos, lo cual introduce ruido y potencial sesgo en la medición del trato diferencial (Heckman, 1998).
+
+Para superar estas limitaciones, en las últimas décadas se ha consolidado el uso de experimentos de correspondencia, donde se envían solicitudes ficticias estandarizadas a anuncios reales y se varía únicamente una señal (como el nombre) que indica el origen étnico, el género o alguna otra característica relevante. Este enfoque reduce casi por completo la variabilidad en atributos no observables, permite un control estricto del diseño experimental y facilita la recolección de muestras grandes a bajo costo, especialmente en mercados muy competitivos como el de alquiler urbano (Bertrand \& Mullainathan, 2004; Gaddis, 2018). De este modo, el investigador puede identificar diferencias sistemáticas en la probabilidad de recibir una respuesta sin interferencias de rasgos personales de los solicitantes.
+
+El caso sueco es particularmente interesante para estudiar discriminación en el acceso al alquiler. Suecia combina un sistema institucional con fuerte control de rentas, tradición de vivienda pública municipal y normas muy protectoras del inquilino, con un mercado privado sometido a fuertes tensiones. En promedio, solo alrededor del 35\% de los hogares viven en arriendo, mientras que la mayoría son propietarios, ya sea directamente o mediante cooperativas de vivienda (Statistics Sweden, 2024). Dentro del segmento de alquiler, el stock se divide aproximadamente mitad y mitad entre empresas municipales de vivienda y arrendadores privados, ambos sujetos al sistema regulado de “valor de uso” (Lind, 2001). En las principales ciudades, las tasas de vacancia son muy bajas (frecuentemente por debajo del 2\%), lo que genera una demanda enormemente superior a la oferta disponible. Esta escasez se acentúa en Estocolmo, Gotemburgo y Malmö, donde encontrar una vivienda de alquiler regulado puede requerir esperas de entre 9 y 20 años en el sistema de colas municipal (Boverket, 2023), mientras que el mercado privado online recibe cientos de solicitudes por anuncio en pocas horas.
+
+En este entorno tan competitivo, los arrendadores privados, que cuentan con amplia discrecionalidad para elegir entre numerosos candidatos, pueden aplicar filtros basados en prejuicios, preferencias o reglas informales. La evidencia disponible indica que, en contextos de escasez severa, el uso de señales superficiales como el nombre se vuelve un mecanismo común de filtrado. En particular, estudios experimentales previos en Suecia han documentado que solicitantes con nombres árabes o musulmanes enfrentan probabilidades significativamente menores de recibir una respuesta que solicitantes idénticos con nombres suecos, y que incluso existen diferencias por género dentro de la población nativa (Ahmed \& Hammarstedt, 2008; Carlsson \& Eriksson, 2014). Este conjunto de características ubica a Suecia como un caso ideal para aplicar experimentos de correspondencia y analizar la presencia y magnitud de discriminación en las etapas iniciales del proceso de búsqueda de vivienda.
+
+
+
+\subsection{Relevancia en política pública}
+
+Literatura reciente muestra que los barrios donde crecen los niños tienen efectos causales sustanciales sobre sus trayectorias de vida. La evidencia más influyente proviene del trabajo de Chetty, Hendren y coautores, quienes documentan que cambiar de barrio (particularmente a una edad temprana) puede modificar de forma permanente los ingresos futuros, el logro educativo y otros resultados en la adultez (Chetty \& Hendren, 2018; Chetty et al., 2018).
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{fig_cmto_international_effects.png}
+    \caption{Efectos causales de mudarse a un mejor vecindario en distintos contextos:
+    Estados Unidos, Australia, Montreal (Canadá), Dinamarca, el experimento MTO
+    y demoliciones de vivienda pública en Chicago. 
+    Fuente: Appendix Figure~1 de \textit{Creating Moves to Opportunity: Experimental Evidence on Barriers to Neighborhood Choice}, 
+    Bergman et al.\ (2024).}
+    \label{fig:cmto_international_effects}
+\end{figure}
+
+La Figura~\ref{fig:cmto_international_effects} sintetiza evidencia de varios países: los efectos de un cambio residencial dependen fuertemente de la edad del niño. En múltiples contextos, mudarse a un barrio de mayores oportunidades antes de la adolescencia produce mejoras significativas en ingresos en la adultez, mientras que cambios posteriores generan efectos más pequeños o incluso nulos (Chetty \& Hendren, 2018; Chetty, Hendren \& Katz, 2016; Chyn, 2018). Estos resultados se apoyan en diseños cuasi-experimentales y en experimentos como Moving to Opportunity, lo que refuerza su interpretación causal.
+
+En conjunto, esta evidencia sugiere que el lugar donde se vive no es solamente un contenedor físico, sino una forma de “capital espacial” que influye en el acceso a escuelas de calidad, redes sociales (capital social) con mejores oportunidades, mercados laborales más dinámicos, menor exposición al crimen y entornos más propicios para el desarrollo infantil (Galster, 2012; Chetty \& Hendren, 2018). Por tanto, las políticas y fricciones que determinan quién puede vivir dónde tienen implicaciones directas sobre movilidad intergeneracional, desigualdad y cohesión social.
+
+Bajo esta lógica, la discriminación en el mercado de alquiler adquiere una relevancia particular. Si ciertos grupos como inmigrantes, minorías étnicas o familias con pocos recursos enfrentan barreras sistemáticas para acceder a viviendas en barrios con altas oportunidades, entonces la segregación residencial observada no es simplemente el resultado de preferencias o ingresos, sino también de restricciones discriminatorias en la etapa de búsqueda de vivienda. En el contexto sueco, estudios de correspondencia han mostrado que solicitantes con nombres árabes o musulmanes reciben menos respuestas que solicitantes con nombres suecos, incluso cuando el contenido de la solicitud es idéntico (Ahmed \& Hammarstedt, 2008; Carlsson \& Eriksson, 2014).
+
+Además, Suecia ha experimentado un aumento sostenido de población de origen migrante y presenta patrones marcados de segregación residencial, con concentración de hogares inmigrantes en áreas con menor calidad escolar y peores resultados en el mercado laboral (Andersson et al., 2010; OECD, 2017). En un mercado de alquiler extraordinariamente competitivo y con fuertes cuellos de botella, incluso pequeñas diferencias en la probabilidad de recibir una respuesta pueden amplificar desigualdades preexistentes.
+
+En consecuencia, estudiar la discriminación en el acceso al arriendo no solo aborda una cuestión de equidad en el trato inmediato, sino también una cuestión estructural: la discriminación en la “puerta de entrada” al mercado residencial puede reforzar la segregación, limitar la movilidad laboral de los inmigrantes y perpetuar brechas intergeneracionales (OECD, 2017). Un experimento de correspondencia en este contexto permite medir con precisión si, y en qué magnitud, estas barreras existen desde la primera etapa del proceso de asignación de vivienda.
+
+
+\subsection{Revisión de literatura}
+
+La medición empírica de la discriminación mediante experimentos de campo tiene una larga trayectoria en economía y sociología. Los primeros estudios de auditoría en mercados laborales y de vivienda comparaban parejas de solicitantes “reales” cuidadosamente entrenados, documentando diferencias sistemáticas en el trato recibido por minorías raciales y étnicas (Riach \& Rich, 2002). Sin embargo, estos estudios fueron criticados por la dificultad de garantizar que los auditores fueran verdaderamente idénticos en todos los atributos no observables, lo que podía sesgar hacia arriba o hacia abajo las estimaciones de discriminación (Heckman, 1998). En respuesta a estas críticas, los experimentos de correspondencia con perfiles ficticios se consolidaron como metodología estándar, al permitir un control mucho más estricto sobre las credenciales observables y el contenido de las solicitudes (Bertrand \& Mullainathan, 2004).
+
+En el mercado de vivienda, los estudios pioneros se concentraron en auditorías presenciales y telefónicas en Estados Unidos, mostrando niveles persistentes de discriminación racial en la fase de búsqueda de vivienda, aun después de la introducción de legislación antidiscriminatoria (Ross \& Turner, 2005). La expansión de los portales inmobiliarios en internet facilitó el uso de experimentos de correspondencia mediante correo electrónico, permitiendo tamaños muestrales más grandes y diseños más flexibles. Un ejemplo influyente son los trabajos de Hanson y Hawley en ciudades estadounidenses, que muestran que solicitantes afroamericanos e hispanos reciben menos respuestas y menos invitaciones a visita que solicitantes blancos con perfiles equivalentes (Hanson \& Hawley, 2011).
+
+En Europa, una literatura creciente ha aplicado diseños similares para estudiar discriminación en el mercado de alquiler. En el caso de España, Bosch, Carnero y Farré (2010) muestran que nombres de origen inmigrante reciben tasas de respuesta más bajas que nombres nativos y que la cantidad de información incluida en el correo modifica parcialmente el grado de discriminación. Para Italia, Baldini y Federici (2011) encuentran que solicitantes con nombres árabes o de Europa del Este enfrentan menores probabilidades de respuesta que solicitantes con nombres italianos. Estudios en otros países europeos llegan a conclusiones similares, resaltando que la intensidad de la discriminación depende tanto del tipo de arrendador como de las condiciones del mercado local.
+
+Para el caso sueco, el trabajo de Ahmed y Hammarstedt (2008, 2010) constituye el punto de referencia central. Utilizando experimentos de correspondencia con identidades ficticias, muestran que los solicitantes con nombres árabes o musulmanes reciben sustancialmente menos respuestas, invitaciones a visita y contactos de seguimiento que los solicitantes con nombres suecos, y que la brecha se atenúa pero no desaparece cuando se proveen detalles adicionales sobre empleo y situación económica. Estos resultados indican que, incluso en un entorno institucionalmente igualitario y con fuerte legislación antidiscriminación, los arrendadores privados siguen usando el origen étnico como criterio de selección.
+
+Carlsson y Eriksson (2014) extienden esta literatura en el contexto sueco diseñando un experimento de correspondencia que permite estudiar, de manera conjunta, los efectos de etnicidad, género, edad y situación laboral sobre las probabilidades de respuesta. Sus resultados confirman una penalización clara para solicitantes con nombres de origen extranjero (especialmente de Medio Oriente), así como patrones de discriminación de género y heterogeneidad relevante según tipo de arrendador y características del anuncio. En conjunto, estos estudios indican que la discriminación en el mercado de alquiler sueco no se limita a un único grupo minoritario ni a un único margen de decisión, sino que surge de la interacción entre señales étnicas, de género y de estatus socioeconómico.
+
+Más allá de casos individuales, trabajos de síntesis han revisado la evidencia disponible. Flage (2018) analiza estudios de correspondencia en mercados de alquiler de países de la OCDE y encuentra evidencia robusta de discriminación tanto étnica como de género, con efectos particularmente fuertes para nombres árabes o musulmanes. Esta evidencia ubica el caso sueco dentro de un patrón más amplio de discriminación en mercados de alquiler de países de altos ingresos.
+
+Finalmente, la literatura teórica sobre discriminación basada en preferencias (Becker, 1957) y discriminación estadística (Phelps, 1972), combinada con la evidencia de segregación residencial y efectos de barrio sobre movilidad intergeneracional (Chetty \& Hendren, 2018), proporciona el marco conceptual para interpretar los hallazgos empíricos. En mercados de alquiler con baja vacancia y elevada demanda, como el sueco, estos modelos sugieren que incluso sesgos pequeños en la etapa de selección inicial pueden traducirse en diferencias grandes y persistentes en la asignación de oportunidades residenciales. El presente estudio se inserta en esta literatura al replicar y actualizar el enfoque de experimentos de correspondencia en Suecia, con un diseño que enfatiza la comparación entre nombres suecos y árabes o musulmanes, la dimensión de género y la heterogeneidad por tipo de arrendador y contexto geográfico.
+
+
+\subsection{Contribución del estudio propuesto}
+
+El estudio propuesto aporta varias contribuciones sustantivas a la literatura sobre discriminación en mercados de alquiler y a la comprensión del caso sueco en particular.
+
+Primero, actualiza la evidencia empírica para Suecia utilizando un diseño experimental moderno y totalmente estandarizado. Los estudios de referencia en el país, especialmente Ahmed y Hammarstedt (2008, 2010) y Carlsson y Eriksson (2014), se desarrollaron en un contexto institucional y tecnológico diferente, previo a la consolidación del mercado digital de alquileres. Dado que hoy la gran mayoría de la búsqueda de vivienda en el sector privado ocurre mediante plataformas en línea, es fundamental contar con mediciones recientes que capturen las formas contemporáneas de selección y filtrado utilizadas por arrendadores privados. Este estudio proporciona dicha actualización con un diseño limpio, replicable y consistente con estándares internacionales.
+
+Segundo, el experimento permite medir simultáneamente discriminación étnica y de género, así como la interacción entre ambas dimensiones. A diferencia de diseños más acotados centrados únicamente en el origen étnico, nuestra estrategia incorpora explícitamente una solicitante mujer nativa sueca, permitiendo evaluar si existen patrones de trato diferencial dentro del grupo mayoritario y cómo estos contrastan con el tratamiento recibido por un solicitante con nombre árabe. Esto contribuye a una comprensión más completa de la jerarquía de preferencias y sesgos en el proceso de selección inicial de arrendadores.
+
+Tercero, el estudio amplía la literatura explorando heterogeneidad a lo largo de márgenes relevantes para la política pública y la teoría económica. En particular, se analiza cómo varían los efectos según: (i) tipo de arrendador (empresas/particulares), (ii) características del anuncio (nivel de renta, tamaño de la vivienda), (iii) localización geográfica (grandes ciudades vs. zonas no metropolitanas), y (iv) origen aparente del arrendador. Este conjunto de análisis permite identificar en qué segmentos del mercado la discriminación es más severa y, por tanto, dónde las intervenciones regulatorias o informativas podrían ser más efectivas.
+
+Cuarto, metodológicamente, el estudio incorpora mejoras importantes frente a experimentos previos. El uso de tiempos de espera generados por un proceso Poisson evita patrones triviales en los intervalos de envío, reduciendo aún más el riesgo de detección del experimento. El uso de plantillas múltiples asignadas aleatoriamente también disminuye la posibilidad de que arrendadores identifiquen el estudio por similitudes en la redacción de los correos. Finalmente, los procedimientos de registro y clasificación de respuestas permiten distinguir entre respuestas automáticas y decisiones activas, refinando la medición del outcome primario.
+
+Quinto, desde la perspectiva de política pública, el estudio conecta explícitamente la discriminación en la etapa de búsqueda con la literatura contemporánea sobre movilidad intergeneracional y efectos de barrio. En un país donde la segregación residencial ha sido objeto de intenso debate, mostrar que ciertos grupos enfrentan barreras desde el primer paso del proceso, aporta evidencia crucial para entender los mecanismos que pueden perpetuar desigualdades a lo largo del ciclo de vida.
+
+En conjunto, el estudio propuesto no solo replica un enfoque clásico, sino que lo actualiza, extiende y contextualiza para el mercado de alquiler sueco contemporáneo. Sus resultados permitirán evaluar si las brechas documentadas hace más de una década persisten, se han reducido o incluso se han intensificado, proporcionando insumos valiosos para investigadores, reguladores y actores del mercado interesados en promover un acceso equitativo a la vivienda.
+
+\subsection{Tamaño y características del mercado de alquiler en Suecia}
+
+\noindent Aproximadamente un tercio de los hogares en Suecia vive en arriendo (Hurvibor, 2024; Statistics Sweden [SCB], 2024). El parque de vivienda de alquiler se reparte entre compañías municipales de vivienda (allmännyttan) y arrendadores privados; las empresas públicas municipales poseen cerca de una cuarta parte de estos departamentos en edificios multifamiliares, mientras que el resto está en manos de propietarios privados (empresas y particulares) (Statistics Sweden [SCB], 2024).
+
+\noindent En 2024 el alquiler mensual promedio a nivel nacional rondaba las 7\,700 coronas suecas (SEK), con valores más altos en las ciudades principales (aproximadamente 8\,600~SEK en Estocolmo, 7\,800~SEK en Gotemburgo y 8\,700~SEK en Malmö) (Global Property Guide, 2025). Las tasas de vacancia son extremadamente bajas, prácticamente no hay viviendas disponibles de inmediato en las tres mayores ciudades (Organisation for Economic Co-operation and Development [OCDE], 2025). Esta escasez se refleja en listas de espera muy prolongadas para vivienda pública: en Estocolmo el tiempo medio de espera para un contrato de alquiler de primer mano supera los 9 años (Bostadsförmedlingen i Stockholm AB, 2025).
+
+\noindent En cuanto a la política de alquiler, se han debatido cambios recientes: un informe oficial de 2021 propuso permitir rentas de mercado en las nuevas construcciones para estimular la oferta (liberalizando parcialmente el sistema de rentas reguladas), iniciativa que no prosperó políticamente (Swedish Government Official Reports, 2021). No obstante, la alta inflación reciente ha generado ajustes atípicos en los alquileres regulados (del orden de 4--6\,\% anual en 2023--2024) tras la negociación colectiva, lo que evidencia nuevas presiones en la dinámica del mercado de alquiler sueco (Global Property Guide, 2025).
+
+\section{Hipótesis de investigación}
+
+\subsection{Hipótesis principal}
+
+\textbf{H1.} \textit{Los solicitantes con nombres de origen árabe/musulmán tienen una probabilidad significativamente menor de recibir una respuesta (callback) por parte de los arrendadores, en comparación con solicitantes con nombres nativos suecos, manteniendo constantes el contenido del mensaje y el resto de características de la solicitud.}
+
+Esta es la hipótesis central del estudio y corresponde al efecto causal principal que el experimento está diseñado para identificar.
+
+\subsection{Hipótesis secundarias}
+
+Además de la comparación principal, el estudio evaluará diferencias sistemáticas en el trato recibido por los solicitantes según dimensiones relevantes del mercado de alquiler. Estas hipótesis son coherentes con modelos teóricos y con estudios previos en mercados escandinavos y europeos.
+
+\textbf{H2. (Género del solicitante)} \textit{Las mujeres con nombres nativos suecos tienen una mayor probabilidad de recibir una respuesta que los hombres nativos suecos.}
+
+Esto permite evaluar si existe discriminación basada en género dentro del grupo de mayoría.
+
+\textbf{H3. (Heterogeneidad por tipo de arrendador)} \textit{La magnitud de la discriminación étnica es mayor entre arrendadores privados que entre empresas u operadores profesionales.}
+
+Se basa en la literatura que sugiere mayor discrecionalidad y sesgos personales entre propietarios individuales.
+
+\textbf{H4. (Heterogeneidad espacial)} \textit{La brecha en la tasa de respuesta entre solicitantes árabes y suecos es mayor en zonas no metropolitanas que en las principales áreas urbanas de Suecia.}
+
+Dado que los entornos rurales o menos diversos pueden exhibir mayores niveles de homofilia o menor exposición a minorías, la discriminación puede intensificarse.
+
+\textbf{H5. (Heterogeneidad por nivel de renta del anuncio)} \textit{La discriminación es más pronunciada en anuncios con rentas altas, consistente con modelos de statistical discrimination donde la percepción de riesgo económico es más relevante.}
+
+\textbf{H6. (Características del arrendador)} \textit{La discriminación étnica es mayor cuando el arrendador tiene un nombre nativo sueco que cuando su nombre sugiere un origen inmigrante.}
+
+Esto permite analizar si la discriminación es asimétrica según el perfil del decisor.
+
+Estas hipótesis secundarias no constituyen el foco principal del estudio, pero sí permiten evaluar patrones de heterogeneidad relevantes desde el punto de vista teórico y de política pública.
+
+\subsection{Justificación teórica}
+
+Las hipótesis anteriores se sustentan en la literatura económica sobre discriminación y en modelos de comportamiento en mercados con selección por parte del ofertante.
+
+Los arrendadores pueden tener preferencias negativas hacia ciertos grupos étnicos, lo que genera trato diferenciado incluso cuando no existen diferencias en productividad o riesgo. Este marco teórico justifica la hipótesis principal (H1) y sugiere que la discriminación puede emerger incluso en ausencia de incentivos económicos. Taste-based discrimination (Becker, 1957).
+
+En mercados con información imperfecta, los arrendadores pueden interpretar señales como el nombre del solicitante para inferir características no observables relacionadas con solvencia, estabilidad o cumplimiento. Este mecanismo predice formas específicas de heterogeneidad (H4 y H5), especialmente en contextos donde el costo de seleccionar al “candidato incorrecto” es percibido como alto. Statistical discrimination (Phelps, 1972; Arrow, 1973).
+
+
+La evidencia reciente presentada en el Opportunity Atlas y estudios asociados demuestra que el barrio donde vive una familia tiene efectos causales sustanciales sobre movilidad intergeneracional, logro económico y bienestar. La segregación residencial, particularmente cuando es reforzada por discriminación en el acceso al arriendo, limita la capacidad de ciertos grupos, especialmente inmigrantes, de acceder a barrios con mayores oportunidades.
+
+El mercado sueco combina una alta demanda con bajas tasas de vacancia, lo que otorga a los arrendadores una posición de fuerte discrecionalidad. En contextos así, la teoría predice que incluso pequeños sesgos pueden amplificarse, haciendo más probable la existencia de discriminación en etapas tempranas del proceso de búsqueda.
+
+En conjunto, la combinación de teoría económica, evidencia internacional y características institucionales del mercado sueco sustenta tanto la hipótesis principal como las hipótesis secundarias de este estudio.
+
+
+
+
+
+
+\section{Diseño experimental}
+
+\subsection{Descripción general del experimento de correspondencia}
+
+El estudio empleará un experimento de correspondencia (correspondence study) para medir discriminación en el mercado de alquiler de apartamentos en Suecia. Este método consiste en enviar solicitudes ficticias pero realistas a anuncios de vivienda publicados en plataformas en línea, variando únicamente el atributo que se desea estudiar, en este caso, el origen étnico y el género del solicitante, señalizados exclusivamente a través del nombre, mientras se mantiene constante todo el contenido relevante del mensaje.
+
+Al comparar sistemáticamente las tasas de respuesta a cada tipo de solicitante, el diseño permite identificar trato diferencial atribuible exclusivamente a la señal étnica o de género, eliminando la influencia de características no observables que históricamente generaban ruido en los estudios de auditoría presenciales.
+
+Este enfoque tiene varias fortalezas metodológicas: Control estricto del contenido de las solicitudes. Eliminación de variación no deseada asociada a comportamiento, apariencia o interacción interpersonal.
+Posibilidad de recolectar muestras grandes en poco tiempo y a bajo costo.
+Adecuación perfecta para mercados digitales altamente competitivos como el sueco.
+
+\subsection{Criterios de selección de anuncios y propiedades}
+
+Los anuncios serán recolectados desde plataformas de alquiler en línea ampliamente utilizadas en Suecia, tales como \texttt{Blocket.se} (principal mercado privado), así como otras páginas de agentes inmobiliarios cuando el diseño lo permita.
+
+Los criterios de inclusión serán:
+\begin{itemize}
+    \item El anuncio debe permitir contacto por correo electrónico.
+    \item El alquiler debe corresponder a vivienda permanente o temporal estándar (no subarriendos turísticos ni habitaciones tipo Airbnb).
+    \item Debe incluir información básica de la unidad: localización, precio, características del inmueble y tipo de arrendador cuando esté disponible.
+\end{itemize}
+
+Criterios de exclusión:
+
+\begin{itemize}
+    \item Anuncios que requieran llamadas telefónicas obligatorias, formularios personalizados o entrevistas presenciales inmediatas.
+    \item Anuncios duplicados o repetidos por el mismo arrendador.
+    \item Publicaciones que indiquen explícitamente preferencias que violan las condiciones experimentales (por ejemplo, “solo mujeres”, “solo estudiantes”, “no inmigrantes”).
+    \item Anuncios donde no sea posible identificar si la respuesta proviene del arrendador o de un sistema automático.
+\end{itemize}
+
+La recolección de anuncios se realizará diariamente durante el período del estudio para asegurar representatividad tanto geográfica como temporal.
+
+\subsection{Diseño de los tratamientos (nombres y contenido de las solicitudes)}
+
+El tratamiento consiste en asignar aleatoriamente uno de tres nombres ficticios que señalan atributos étnicos y de género:
+
+\begin{table}[h]
+\centering
+\caption{Identidades y señales transmitidas}
+\begin{tabular}{lll}
+\hline
+\textbf{Identidad} & \textbf{Nombre} & \textbf{Señal transmitida} \\ \hline
+Hombre sueco & Björn Svennsson & Nativo sueco, masculino \\
+Mujer sueca & Astrid Fjördström & Nativa sueca, femenino \\
+Hombre árabe & Muhammad Al-Hassan & Origen árabe/musulmán \\ \hline
+\end{tabular}
+\end{table}
+
+Todos los nombres fueron seleccionados tras verificar su prevalencia real en registros suecos o en estudios previos, asegurando que los nombres “suecos” sean altamente reconocibles como nativos, mientras que “Muhammad” constituye una de las señales étnicas más consistentes en estudios de correspondencia europeos.
+
+Contenido del mensaje:
+Se desarrollarán tres plantillas de email con redacción natural, cortas y equivalentes en su estructura:
+
+\begin{itemize}
+    \item saludo inicial
+    \item presentación breve del solicitante (sin información socioeconómica)
+    \item expresión de interés por la vivienda
+    \item pregunta sobre disponibilidad para visita o recibir más información
+    \item firma con el nombre correspondiente
+\end{itemize}
+
+El contenido será idéntico exceptuando el nombre. El tono será estándar, educado y neutro. No se incluirán detalles que puedan revelar diferencias de ingresos, familia, profesión o estatus migratorio.
+
+\subsection{Procedimiento de asignación aleatoria}
+
+Cada anuncio será contactado por tres solicitantes, uno por cada identidad. El orden de envío será completamente aleatorio y, además, entre los tres envíos se introducirá un tiempo de espera generado a partir de un proceso Poisson, de manera que los intervalos entre contactos sean aleatorios y no determinísticos.
+
+Procedimiento:
+
+\begin{enumerate}
+    \item Para cada anuncio, se generan las tres solicitudes (Björn, Astrid, y Muhammad).
+    \item Se crea una permutación aleatoria del orden de envío. 
+    \item Entre cada uno de los tres envíos se introduce un tiempo de espera aleatorio, generado a partir de un proceso de llegadas Poisson (es decir, con tiempos entre eventos distribuidos exponencialmente). Esto garantiza intervalos de espera no determinísticos, más realistas y difíciles de detectar para los arrendadores.
+    \item Las plantillas de correo se asignan aleatoriamente entre las tres identidades, reduciendo patrones sistemáticos y minimizando cualquier riesgo de detección del experimento.
+    \item Se monitorean todas las respuestas durante al menos 14 días posteriores al último envío asociado a cada anuncio.
+\end{enumerate}
+
+Este diseño garantiza que: cada anuncio funciona como un “mini experimento” con variación interna entre identidades, se controle rigurosamente por características no observables propias del anuncio, se puedan estimar efectos usando errores estándar agrupados a nivel anuncio.
+
+Se registrarán de forma precisa las siguientes covariables: fecha y hora de cada envío, ID del anuncio,  descripción de la propiedad, precio de renta, características estructurales de la vivienda (número de habitaciones, número de baños, tamaño del inmueble, etc), localización (código postal o municipio), tipo de arrendador (empresa/privado), nombre del arrendador (se guarda de manera privada, se puede usar para identificar su origen étnico), mención explícita a requisitos (ingresos, contrato, referencias).
+
+\subsection{Variables de resultado primaria y secundarias}
+
+Variable resultado primaria: 
+\begin{itemize}
+    \item Callback: indicador binario que toma valor 1 si el arrendador responde al correo electrónico, independientemente del contenido de la respuesta.
+\end{itemize}
+Variables resultado secundarias: 
+\begin{itemize}
+    \item Invitación a continuar la comunicación (pide más información del solicitante).
+    \item Invitación a visita (showing) o propuesta de cita.
+    \item Tiempo de respuesta en horas.
+    \item Longitud de la respuesta.
+    \item Respuestas automáticas vs personalizadas.
+\end{itemize}
+
+\subsection{Potenciales amenazas a la validez interna}
+
+\begin{itemize}
+    \item Doble decisión o decisiones grupales: si varias personas gestionan una vivienda, la identidad observada puede no reflejar a quien toma las decisiones.
+
+    \item Reconocimiento de los nombres: posibles diferencias en familiaridad con nombres árabes o suecos.
+
+    \item Respuestas automáticas: algunos arrendadores usan bots que podrían distorsionar la interpretación de los callbacks.
+
+    \item Orden de envío: aunque aleatorizado, podrían existir interacciones complejas entre orden y disponibilidad temporal del arrendador.
+
+    \item Posible saturación en mercados pequeños: recibir tres correos por anuncio puede levantar sospechas en municipios muy pequeños.
+\end{itemize}
+
+
+Mitigaciones a estos problemas:
+
+\begin{itemize}
+    \item Errores estándar clusterizados a nivel anuncio.
+    \item Sensibilidad a orden de envío.
+    \item Codificación separada de respuestas automáticas.
+    \item El experimento solamente se hará en municipios que superen un threshold de número total de anuncios, para controlar la liquidez del mercado.
+\end{itemize}
+
+\subsection{Potenciales amenazas a la validez externa}
+
+\begin{itemize}
+    \item El estudio se concentra en el mercado de alquiler privado online, que puede no reflejar completamente el mercado regulado mediante colas municipales.
+    \item La discriminación puede variar según el canal de entrada (contacto telefónico, redes informales, referencias).
+    \item Los resultados pueden generalizar mejor a los grandes centros urbanos que a zonas rurales con bajos volúmenes de anuncios.
+\end{itemize}
+
+El estudio, sin embargo, captura el mecanismo central de asignación en el mercado privado contemporáneo y es representativo de la experiencia de miles de solicitantes reales que dependen de plataformas digitales.
+
+\subsection{Consideraciones éticas}
+
+\begin{itemize}
+    \item El experimento utiliza únicamente información mínima necesaria para evaluar discriminación.
+
+    \item No se busca obtener beneficios reales, ni se completan procesos de arriendo; si un arrendador ofrece una cita o visita, se envía una disculpa y se declina la oferta rápidamente para evitar costos.
+
+    \item No se recopila información personal sensible del arrendador.
+
+    \item Se respeta el anonimato completo de todas las partes.
+
+    \item Se minimiza la carga impuesta a los arrendadores y al funcionamiento del mercado.
+\end{itemize}
+
+El estudio cumple con principios éticos de investigación experimental.
+
+
+\section{Plan de análisis estadístico}
+
+\subsection{Unidad de análisis y notación}
+
+Denotamos por $j = 1, \dots, J$ los anuncios de vivienda (listings) y por 
+$k \in \{ B, A, M\}$ los tres tipos de solicitante:
+
+\begin{itemize}
+    \item $k = B$: hombre nativo sueco ("Björn Svennsson"),
+    \item $k = A$: mujer nativa sueca ("Astrid Fjördström"),
+    \item $k = M$: hombre de origen árabe/musulman ("Muhammad Al-Hassan")
+\end{itemize}
+
+Cada anuncio $j$ recibe exactamente una solicitud de cada tipo, por lo que el conjunto de observaciones puede indexarse por el par $(j,k)$. Para notación compacta también podemos indexar por $i = 1, \dots, N$ con $N = 3J$, de modo que cada $i$ corresponde a un par $(j,k)$, más específicamente donde si $i \equiv_3 1$ entonces $k = B$, si $i \equiv_3 2$ entonces $k = A$ y si $i \equiv_3 0$ entonces $k = M$. 
+
+Sea: 
+
+\begin{itemize}
+    \item $Y_{jk}:$ variable de resultado observada para el solicitante de tipo $k$ que contacta el anuncio $j$ (por ejemplo, el indicador de respuesta).
+    \item $Y_{jk}(k')$: resultado potencial que se observaría en el par $(j,k)$ si el solicitante pertenceira al tipo $k'$. 
+    \item $T_{jk}$: vector de indicadores de tratamiento con componentes 
+    $$T_{jk}^M = 1\{k=M\}, \ T_{jk}^A = 1\{k=A\}, $$
+    tomando como base el solicitante hombre sueco $B$.
+\end{itemize}
+
+El diseño garantiza que la asignación de tipos de solicitante a cada anuncio es completamente aleatoria en cuanto al orden de envío y a las plantillas de correo utilizadas. Asumimos una versión estándar de SUTVA: (i) no hay interferencia entre anuncios distintos ($Y_{jk}$ no depende de tratamientos en otros anuncios $j' \neq j$), y (ii) para cada par $(j,k)$ existe un único resultado potencial bajo cada tratamiento.
+
+\subsection{Estimandos (cantidades de interés)}
+
+El interés principal recae en los efectos causales promedio de cambiar el tipo de nombre/señal étnica, sobre la probabilidad de respuesta.
+
+\begin{enumerate}
+    \item Efecto de nombre árabe vs nombre sueco masculino (hipótesis \textbf{H1}):
+    $$\tau^{M-B} = \mathbb{E}[Y(M) - Y(B)],$$
+    donde $Y(M)$ es el resultado potencial si el solicitante tuviera nombre árabe/musulmán y $Y(B)$ el resultado potencial si tuviera nombre sueco masculino.
+    Este es el estimando primario del estudio para el outcome “callback”.
+
+    \item Efecto de nombre sueco femenino vs sueco masculino (hipótesis \textbf{H2}): 
+    $$\tau^{A-B} = \mathbb{E}[Y(A) - Y(B)].$$    
+\end{enumerate}
+
+Estos estimandos se definen para cada resultado de interés. Por ejemplo, para el indicador de invitación a visita o para el tiempo de respuesta puede definirse análogamente $\tau_{visit}^{M-B}, \tau_{visit}^{A-B}$, etc.
+
+\subsection{Efectos heterogéneos (CATE)}
+
+Para analizar heterogeneidad, definimos efectos causales promedio condicionales en covariables $Z_j$ a nivel de anuncio (por ejemplo, tipo de arrendador, ubicación, nivel de renta):
+
+$$\tau^{M-B}(z) = \mathbb{E}[Y(M)-Y(B) | Z_j = z].$$
+
+Estos CATEs son estimandos secundarios y se utilizarán para estudiar las otras hipótesis.
+
+\subsection{Estimadores}
+
+\subsubsection{Diferencia de medias}
+
+Dado el diseño de asignación completamente aleatorio y balanceado, el estimador más natural para $\tau_{M-B}$ es la diferencia de medias entre grupos:
+
+\[
+\widehat{\tau}_{DM}^{M-B} \left( 
+\frac{1}{N_M} \sum_{i: T_i^M = 1} Y_i \right) - \left( 
+\frac{1}{N_B} \sum_{i: T_i^B = 1} Y_i \right)
+\]
+
+donde $N_M$ y $N_B$ son el número de observaciones en cada grupo. De manera completamente análoga se puede definir 
+$\widehat{\tau}_{DM}^{A-B}$.
+
+Bajo la aleatorización, estos estimadores son insesgados y consistentes para los ATE correspondientes, sin requerir supuestos paramétricos adicionales.
+
+\subsubsection{Modelo de probabilidad lineal (LPM)}
+
+Como estimador principal reportaremos también el coeficiente de una regresión lineal (modelo de probabilidad lineal) que incluye indicadores de tratamiento y, opcionalmente, covariables a nivel de anuncio para mejorar precisión:
+
+\[
+Y_{ij} = \alpha + \beta_M T_{ij}^{M} + \beta_A T_{ij}^{A} + X_j' \gamma
++ \varepsilon_{ij},
+  \]
+  
+  donde:
+\begin{itemize}
+    \item ($Y_{ij}$) es el outcome de la solicitud ($i$) asociada al anuncio ($j$),
+    \item ($X_j$) es un vector de covariables pretratamiento (renta, tamaño, zona, tipo de arrendador, etc.),
+    \item ($\beta_M$) y ($\beta_A$) son los parámetros de interés.
+\end{itemize}
+
+
+En ausencia de covariables, los coeficientes ($\beta_A$) y ($\beta_M$) coinciden algebraicamente con las diferencias de medias ($\widehat{\tau}_{DM}^{M-B}$) y ($\widehat{\tau}_{DM}^{A-B}$). Con covariables, la aleatorización garantiza que el estimador sigue siendo consistente para los ATE, pero con menor varianza siempre que ($X_j$) esté correlacionado con ($Y_{ij}$).
+
+\subsubsection{Estimadores para heterogeneidad}
+
+Los efectos heterogéneos se estimarán mediante regresiones con términos de interacción:
+
+\begin{align*}
+    Y_{ij} &= \alpha + \beta_M T_{ij}^M + \beta_A T_{ij}^A + \\ 
+    & \delta_M (T_{ij}^M \times Z_j) + \delta_A  (T_{ij}^A \times Z_j) + X_j' \gamma + \varepsilon_{ij}
+\end{align*}
+
+donde $Z_j$ es una covariable (usualmente discretizada en indicadores de cuartiles)
+
+\begin{itemize}
+    \item El parámetro $\delta_M$ captura la diferencia en el efecto del nombre árabe entre grupos definidos por $Z_j$. 
+    \item De manera análoga, $\delta_A$ captura la heterogeneidad del efecto del nombre femenino nativo. 
+\end{itemize}
+
+\subsection{Inferencia y errores estandar}
+
+La asignación de tratamientos se realiza a nivel de solicitud dentro de anuncio, pero las decisiones están correlacionadas dentro de cada anuncio (un mismo arrendador responde o no responde a los tres nombres). Para reflejar esta estructura Todas las regresiones se estimarán con errores estándar robustos (clustered) a nivel de anuncio $j$. Esto asegura consistencia de las matrices de varianza en presencia de correlación intraanuncio arbitraria.
+
+Formalmente si $\hat{\theta}$ es el vector de parámetros estimado (por ejemplo, $\theta = (\alpha, \beta_M, \beta_A, \gamma)'$), la matrix de varianza se calcula como 
+
+$$\widehat{\text{Var}}(\hat{\theta}) = (X'X)^{-1} \left( \sum_{j=1}^J X_j' \hat{u_j} \hat{u_j}' X_j \right) (X'X)^{-1}.$$
+
+Cuando se utilicen estimadores simples de diferencia de medias, se implementará la diferencia de medias como un caso particular de regresión con cluster.
+
+\subsection{Especificaciones alternativas y robustez}
+
+Aunque el modelo de probabilidad lineal con errores estándar agrupados será la especificación principal, se realizarán varios ejercicios de robustez:
+
+\begin{enumerate}
+    \item Modelos no lineales (Logit/Probit): Se estimarán modelos de respuesta binaria para los outcomes indicadores, reportando efectos marginales promedio. Estos modelos no redefinen el estimando (sigue siendo la diferencia de probabilidad) pero ofrecen una verificación adicional de que los resultados no dependen fuertemente de la linealidad del LPM.
+    \item Especificaciones sin covariables: ara mostrar que los resultados no son sensibles al conjunto de controles, se reportarán estimaciones con y sin $X_j$. Dado el diseño experimental, las diferencias entre ambas deben ser pequeñas y atribuibles a ganancias de precisión.
+    \item Sensibilidad al tratamiento del orden de envío: Se incluirán dummies de orden (primer correo, segundo, tercero) y sus interacciones con los tratamientos para comprobar que los efectos estimados no son impulsados por un sesgo sistemático de ser el primer o el último solicitante.
+    \item Exclusión de respuestas automáticas: Se reestimarán los efectos excluyendo respuestas clasificadas como claramente automáticas, para asegurarse de que los resultados reflejan decisiones activas de los arrendadores.
+    \item Análisis por submuestras: Como revisión exploratoria, se replicará el análisis en submuestras (por ejemplo, solo grandes ciudades, solo arrendadores privados, solo rentas por encima de la mediana), siendo explicítos cuando se haga este tipo de análisis.
+\end{enumerate}
+
+\section{Cálculos de poder estadístico}
+
+\subsection{Supuestos iniciales}
+
+Para los cálculos de poder y las simulaciones adoptaremos los siguientes supuestos de planificación:
+
+\begin{itemize}
+    \item Unidad de aleatorización: solicitud dentro de anuncio (tres solicitudes por anuncio).
+    \item Número de anuncios en el experimento: 
+    \begin{itemize}
+        \item Escenarios de referencia: $J \in \{ 500, 750, 1000, 1500\}$.
+        \item Número total de observaciones: $N = 3J$.
+    \end{itemize}
+    \item Outcome primario: indicador de callback.
+    \item Probabilidades de respuesta (escenario base), inspiradas en la literatura previa: 
+    \begin{itemize}
+        \item Solicitante nativo sueco hombre (Björn): $p_B = .4$.
+        \item Solicitante nativa (Astrid): $p_A = .45$.
+        \item Solicitante de origen árabe hombre (Muhammad) $p_M = .25$.
+    \end{itemize}
+\end{itemize}
+
+De este modo, los efectos causales verdaderos en el escenario base son: 
+    $$\tau^{M-B} = -.15, \ \tau^{A-B} = .05$$
+    Vamos a tomar pruebas bilaterales con un nivel de significancia $\alpha = .05$.
+
+En el cálculo analítico trataremos las observaciones como independientes (lo que da una aproximación estándar de poder). En las simulaciones, incorporamos explícitamente la estructura de “tres observaciones por anuncio” y usamos errores estándar agrupados a nivel de anuncio, que reflejan mejor el diseño real.
+
+\subsection{Enfoque analítico}
+
+Para el outcome binario “callback”, se hace un contraste entre dos proporciones independientes: $p_B$ vs $p_M$. 
+
+Suponiendo tamaños de muestra iguales por grupo $(n_B = n_M = J),$ el estimador para la diferencia de propociones es:
+
+$$\hat{\tau}^{B-M} = \hat{p}_B - \hat{p}_M$$
+
+con varianza aproximada, bajo el método clásico de diferencia de proporciones:
+
+$$\text{Var}(\hat{\tau}^{B-M}) \approx \cfrac{(p_B)(1-p_B)}{p_B} + \cfrac{(p_M)(1-p_M)}{p_M}.$$
+
+El estadístico de prueba (con $H_0: {\tau}^{B-M} = 0$ es:
+
+$$Z = \cfrac{\hat{\tau}^{B-M}}{\sqrt{\widehat{\text{Var}}(\hat{\tau}^{B-M}})}.$$
+
+Bajo el supuesto de normalidad asintótica, el poder para detercatr una diferencia verdadera viene dado aproximadamente por:
+
+\[
+\text{Power}(\delta, n_B, n_M) \approx 
+\Phi\!\left(
+    \frac{|\delta|}{\sqrt{\operatorname{Var}(\hat{\tau}^{B-M})}}
+    - z_{1-\alpha/2}
+\right).
+\]
+
+donde $\Phi$ es la cdf normal estándar y $z_{1-\alpha/2}$ es el cuantil crítico ($1.96$ en nuestro caso).
+
+
+
+\subsection{Simulaciones de poder y tamaño mínimo detectable (MDE)}
+
+Por medio de simulaciones Monte Carlos estimamos el moder analítico, el poder simulado y el MDE a $80\%$ de poder. En la tabla \ref{tab:power_mde} se encuentran los resultados. Nótese que como asumimos un efecto real bastante grande, obtenemos estimaciones de poder bastante generosas.
+
+El MDE se define como el $\delta$ tal que para un $J$ fijo satisface $\text{Power}(\delta, J) \approx .8$.
+
+\begin{table}[H]
+    \centering
+    \caption{Poder analítico, poder simulado y MDE (80\% de poder) según el número de anuncios \(J\).}
+    \begin{tabular}{lcccc}
+        \toprule
+        \(J\) & Poder analítico & Poder simulado & MDE (80\% de poder) \\
+        \midrule
+        500  & 0.999 & 1.000 & 0.088 \\
+        750  & 1.000 & 1.000 & 0.072 \\
+        1000 & 1.000 & 1.000 & 0.062 \\
+        1500 & 1.000 & 1.000 & 0.050 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:power_mde}
+\end{table}
+
+\subsection{Poder para detectar heterogeneidad}
+
+Para las hipótesis sobre heterogeneidad (por ejemplo, mayor discriminación en arrendadores privados que en empresas), se considera un diseño en el que: 
+
+\begin{enumerate}
+    \item Cada anuncio tiene una covariable binaria $Z_j$ (por ejemplo, $\texttt{private} = 1$ si arrendaror privado, $0$ si empresa). 
+    \item Las probabilidades de respuesta difieren por tipo y por $Z_j$. Por ejemplo: 
+\begin{align*}
+    p_B^{\text{(priv)}} = .45, \ p_M^{(\text{priv)}} = .25, \\ 
+    p_B^{\text{(emp)}} = .35, \ p_M^{(\text{emp)}} = .30,
+\end{align*}
+
+Aquí la discriminación étnica es fuerte en privados ($-.20$) y pequeña en empresas ($-.05$). El parámetro de interés es la diferencia de efectos. Esto es el coeficiente de interacción $\delta_M$ en IV.4.3. Con $J = 1000$ en este caso se obtuvo un poder de $0.962$.
+
+\end{enumerate}
+
+\subsection{Cobertura}
+
+Finalmente, evaluamos mediante simulaciones la cobertura empírica de los intervalos de confianza al $95\%$ para el efecto principal, usando el estimador y la matriz de varianza clusterizada pre-especificada.
+
+Nuestro procedimiento consistió en fijar un conjunto de parámetros verdaderos, simular un experimento con $J$ anuncios, estimar los efectos y ver si el intervalo contiene el valor verdadero. Este último paso se repite muchas veces. Después se estima la cobertura como la proporción de simulaciones en las que el intervalo contiene el valor verdadero. En este caso, de nuevo, con $J=1000$ obtuvimos un valor de $0.946$, muy cercano a lo que se espera. Esto dice que nuestros errores estándar a nivel cluster funcionan bien.
+
+\begin{thebibliography}{99}
+
+\bibitem{ahmed2008discrimination}
+Ahmed, A. M., \& Hammarstedt, M. (2008). Discrimination in the rental housing market: A field experiment on the Internet. \textit{Journal of Urban Economics}, 64(2), 362–372.
+
+\bibitem{baldini2011ethnic}
+Baldini, M., \& Federici, M. (2011). Ethnic discrimination in the Italian rental housing market. \textit{Journal of Housing Economics}, 20(1), 1–14.
+
+\bibitem{becker1957economics}
+Becker, G. S. (1957). \textit{The economics of discrimination}. University of Chicago Press.
+
+\bibitem{bertrand2004emily}
+Bertrand, M., \& Mullainathan, S. (2004). Are Emily and Greg more employable than Lakisha and Jamal? A field experiment on labor market discrimination. \textit{American Economic Review}, 94(4), 991–1013.
+
+\bibitem{bosch2010information}
+Bosch, M., Carnero, M. Á., \& Farré, L. (2010). Information and discrimination in the rental housing market: Evidence from a field experiment. \textit{Regional Science and Urban Economics}, 40(1), 11–19.
+
+\bibitem{carlsson2014discrimination}
+Carlsson, M., \& Eriksson, S. (2014). Discrimination in the rental market for apartments. \textit{Journal of Housing Economics}, 23(1), 41–54.
+
+\bibitem{chetty2018impacts}
+Chetty, R., \& Hendren, N. (2018). The impacts of neighborhoods on intergenerational mobility I: Childhood exposure effects. \textit{Quarterly Journal of Economics}, 133(3), 1107–1162.
+
+\bibitem{flage2018ethnic}
+Flage, A. (2018). Ethnic and gender discrimination in the rental housing market: Evidence from a meta-analysis of correspondence tests, 2006–2017. \textit{Journal of Housing Economics}, 41, 251–273.
+
+\bibitem{gaddis2018introduction}
+Gaddis, S. M. (2018). An introduction to audit studies in the social sciences. In S. M. Gaddis (Ed.), \textit{Audit studies: Behind the scenes with theory, method, and nuance} (pp. 3–44). Springer.
+
+\bibitem{hanson2011landlords}
+Hanson, A., \& Hawley, Z. (2011). Do landlords discriminate in the rental housing market? Evidence from an internet field experiment in U.S. cities. \textit{Journal of Urban Economics}, 70(2–3), 99–114.
+
+\bibitem{heckman1998detecting}
+Heckman, J. J. (1998). Detecting discrimination. \textit{Journal of Economic Perspectives}, 12(2), 101–116.
+
+\bibitem{phelps1972statistical}
+Phelps, E. S. (1972). The statistical theory of racism and sexism. \textit{American Economic Review}, 62(4), 659–661.
+
+\bibitem{bostads}
+Bostadsförmedlingen i Stockholm AB. (2025).
+\textit{How long does it take?}
+Bostadsförmedlingen i Stockholm AB.
+
+\bibitem{gpg}
+Global Property Guide. (2025).
+\textit{Sweden's residential real estate market analysis 2025}.
+GlobalPropertyGuide.com.
+
+\bibitem{hurvibor}
+Hurvibor. (2024).
+\textit{Hustyper och upplåtelseformer}.
+Hurvibor.
+
+\bibitem{oecd}
+Organisation for Economic Co-operation and Development. (2025).
+\textit{OECD Economic Surveys: Sweden 2025}.
+OECD Publishing.
+
+\bibitem{scb}
+Statistics Sweden. (2024).
+\textit{Just over 5.2 million dwellings in Sweden: Dwelling stock 2023-12-31}.
+Statistics Sweden.
+
+\bibitem{sou}
+Swedish Government Official Reports. (2021).
+\textit{Market rents in new construction: Implications for tenants and the housing market}.
+Government Offices of Sweden.
+\end{thebibliography}
+
+
+
+\end{document}
